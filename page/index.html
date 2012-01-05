@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <!-- 引入主css文件 -->
+    <link rel="stylesheet/less" href="../css/master.less" type="text/css" media="screen" charset="utf-8">
+    <!-- 引入lesscss渲染器 -->
+    <script type="text/javascript" src="../lib/less-1.1.5.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../lib/sea.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        seajs.config({
+            base: '../script',
+            alias: {
+                'jquery': '../core/jq',
+                'underscore': '../core/underscore-mod'
+                //'less': ''
+            }
+        });
+        seajs.use('youdao');
+    </script>
+</head>
+<body>
+<div class="div">Test less css!</div>
+</body>
+</html>
