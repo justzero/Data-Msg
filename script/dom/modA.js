@@ -1,8 +1,9 @@
 define(function(require, exports) {
 
+    var _ = require('underscore');
+    var $ = require('jquery');
     var modMsg = require('core/msg').reg('modA');
     var data = require('core/data').reg('data');
-    var $ = require('jquery');
 
     /* -------------------- test view msg ----------------------- */
     modMsg.listen('close', function() {
@@ -20,6 +21,7 @@ define(function(require, exports) {
     /* -------------------- init HTML ----------------------- */
     var html = '<div id="modA">Mod-A 模块加载成功</div>';
     var id = '#modA';
+    var tmpl = 'Mod-A 中的 data 变化为 <%= info %>';
 
     // init view
     var init = function() {
@@ -27,7 +29,14 @@ define(function(require, exports) {
         // listen data change
         data.listen('info', function(o) {
             var json = data.get();
-            $('#modA').html(json.info);
+            var html = _.template(tmpl);
+            $('#modA').html(html({
+                info: json.info
+            }));
+        });
+
+        modMsg.listen('close', function() {
+            $(id).hide(800);
         });
 
         return html;
