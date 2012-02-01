@@ -35,8 +35,14 @@ define(function(require, exports) {
             }));
         });
 
-        modMsg.listen('close', function() {
-            $(id).hide(800);
+        modMsg.listen('display', function() {
+            $(id).show(800);
+        });
+
+        $(id).live('click', function() {
+            modMsg.send('clearTimer');
+            $(this).hide(800);
+            modMsg.send('delay');
         });
 
         return html;

@@ -9,6 +9,7 @@ define(function(require, exports) {
     // static info
     var html = '<div id="modMain">Mod-main主模块加载成功</div>';
     var id = '#modMain';
+    var list = ['timer', 'a', 'b'];
 
     // init html elem
     var init = function() {
@@ -16,7 +17,9 @@ define(function(require, exports) {
         // add listen data
         data.listen('code', function(o) {
             var json = data.get();
-            var html =viewApp.conf(json.code);
+
+            //var html = viewApp.conf(json.code);
+            html = viewApp.init(list);
             $(html).appendTo(id);
         });
 

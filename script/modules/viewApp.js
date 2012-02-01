@@ -1,14 +1,17 @@
 define(function(require, exports) {
 
-    var a = require('dom/modA');
-    var b = require('dom/modB');
-    var c = require('dom/modC');
+    var $ = {};
+
+    $.timer = require('dom/timer');
+    $.a = require('dom/modA');
+    $.b = require('dom/modB');
+    $.c = require('dom/modC');
     
     var config = function(code) {
         var html = '';
         switch(code) {
             case '110011':
-                html = a.init() + b.init();
+                html = timer.init() + a.init() + b.init();
             break;
             case '110000':
                 html = a.init();
@@ -22,6 +25,21 @@ define(function(require, exports) {
         return html;
     };
 
-    exports.conf = config;
+    var init = function(conf) {
+        var i = 0;
+        var len = conf.length;
+        var tmpFn;
+        var html = '';
+        
+        for ( ; i < len; i++) {
+            tmpFn = $[conf[i]];
+            html = html + tmpFn.init();
+        }
+
+        return html;
+    };
+
+    //exports.conf = config;
+    exports.init = init;
     
 });
